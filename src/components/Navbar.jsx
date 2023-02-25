@@ -1,10 +1,4 @@
-import {
-  Input,
-  InputGroup,
-  InputLeftElement,
-  Link,
-  Box,
-} from "@chakra-ui/react";
+import { Input,InputGroup,InputLeftElement,Link,Box} from "@chakra-ui/react";
 import { IoSearchOutline } from "react-icons/io5";
 import { BsFillSunFill } from "react-icons/bs";
 import { IconButton, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
@@ -24,7 +18,7 @@ const Navbar = () => {
   }, [windowWidth]);
 
   return (
-    <Box  width="full" background="gray" display="flex" gap="4rem" h={["4rem","5rem","6rem"]} alignItems="center" position="fixed" justifyContent="space-between">
+    <Box top="0" left="0px"  width="full" background="gray" display="flex" gap="4rem" h={["4rem","5rem","6rem"]} alignItems="center" position="fixed" justifyContent="space-between" zIndex="1">
       <Box  fontFamily="pattaya" fontWeight={["200","300","400"]} fontSize={["15px","20px","30px"]} w={["6rem","8rem","11rem"]}>
         <Link textDecor="none">Image Gallery</Link>
       </Box>
