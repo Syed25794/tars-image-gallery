@@ -1,5 +1,6 @@
 import './App.css';
 import HeroComponent from './components/HeroComponent';
+import ImageCard from './components/ImageCard';
 import Navbar from './components/Navbar';
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
     <div className="App">
       <Navbar />
       <HeroComponent />
+      <ImageCard />
     </div>
   );
 }

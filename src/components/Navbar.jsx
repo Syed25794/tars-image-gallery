@@ -18,13 +18,13 @@ const Navbar = () => {
   }, [windowWidth]);
 
   return (
-    <Box top="0" left="0px"  width="full" bgColor="whiteAlpha.700" display="flex" gap="4rem" h={["4rem","5rem","6rem"]} alignItems="center" position="fixed" justifyContent="space-between" zIndex="1">
+    <Box top="0" left="0px"  width="full" bgColor="gray" display="flex" gap="4rem" h={["4rem","5rem","6rem"]} alignItems="center" position="fixed" justifyContent="space-between" zIndex="1">
       <Box  fontFamily="pattaya" fontWeight={["200","300","400"]} fontSize={["15px","20px","30px"]} w={["6rem","8rem","11rem"]}>
         <Link textDecor="none">Image Gallery</Link>
       </Box>
       <Box   w={["10rem","20rem","25rem"]} display={["none","block","block"]}>
         <InputGroup w="full">
-          <InputLeftElement pointerEvents="none" children={<IoSearchOutline color="gray.300" />}/>
+          <InputLeftElement  children={<IoSearchOutline color="gray.300" />}/>
           <Input type="tel" placeholder="Search Images here" />
         </InputGroup>
       </Box>
