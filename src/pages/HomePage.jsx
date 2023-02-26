@@ -1,11 +1,11 @@
 import { Box } from '@chakra-ui/react';
 import ImageCard from '../components/ImageCard';
 
-const HomePage = ({handleSearchQuery,data,gridLayoutRef}) => {
+const HomePage = ({data,gridLayoutRef,imageFlag}) => {
   return (
     <Box>
-      <Box m="1rem 2rem" ref={gridLayoutRef}>
-        {data.length > 0 && data.map((image,index)=>{
+      <Box m="1rem 2rem" ref={gridLayoutRef} marginTop={imageFlag ? "8rem" : "2rem"}>
+        {data.length > 0 && data.map((image)=>{
           return <ImageCard user={image.user} description={image.alt_description} urls={image.urls}  key={image.id} />
         })}
       </Box>

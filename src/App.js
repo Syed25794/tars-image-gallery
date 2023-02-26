@@ -26,8 +26,8 @@ function App() {
   }
   
   const getSearchPhotos = async (searchQuery) => {
+    setHideHeroSection(true);
     if( searchQuery.length > 0 ){
-      setHideHeroSection(true);
       try {
         let response = await fetch(
           `https://api.unsplash.com/search/collections?query=${searchQuery}`,
@@ -40,18 +40,27 @@ function App() {
           }
         );
         let result = await response.json();
-        const data = result.results;
+        let data = result.results;
         const autoCompleteData = data.map((image) => image.title);
         setOptions(autoCompleteData);
+        data = data.map((image)=>{ return {...image, urls:image.cover_photo.urls}})
         setData(data);
-        console.log(autoCompleteData);
+        setTimeout(()=>{
+          Macy({
+            container:gridLayoutRef.current,
+            columns:3,
+            margin:{x:30,y:30},
+            breakAt:{900:{columns:2},600:{columns:1}}
+          });
+          
+        },1000)
       } catch (error) {
         console.log(error);
       }
     }
   };
   
-  const debouncedHandleSearchQuery =useCallback(debounce((searchQuery) => getSearchPhotos(searchQuery), 500),[]);
+  const debouncedHandleSearchQuery = debounce((searchQuery) => getSearchPhotos(searchQuery), 500);
   
   const handleSearchQuery = (e) => {
     setSearchQuery(e.target.value);
@@ -101,7 +110,7 @@ function App() {
     <Box>
       <Navbar searchQuery={searchQuery} handleKeyDown={handleKeyDown} handleSearchQuery={handleSearchQuery} options={options} />
       { !hideHeroSection && <HeroComponent />}
-      <HomePage handleSearchQuery={handleSearchQuery} data={data} gridLayoutRef={gridLayoutRef} />
+      <HomePage imageFlag={hideHeroSection} handleSearchQuery={handleSearchQuery} data={data} gridLayoutRef={gridLayoutRef} />
     </Box>
   );
 }
