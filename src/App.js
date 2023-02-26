@@ -50,7 +50,7 @@ function App() {
             container:gridLayoutRef.current,
             columns:3,
             margin:{x:30,y:30},
-            breakAt:{900:{columns:2},600:{columns:1}}
+            breakAt:{300:{columns:2}}
           });
           
         },1000)
@@ -68,7 +68,6 @@ function App() {
   };
 
   const handleKeyDown=(e)=>{
-    console.log(e.code,e.target.value);
     if( e.code === "Enter" ){
       debouncedHandleSearchQuery(e.target.value);
       setSearchQuery("");
@@ -93,7 +92,7 @@ function App() {
           container:gridLayoutRef.current,
           columns:3,
           margin:{x:30,y:30},
-          breakAt:{900:{columns:2},600:{columns:1}}
+          breakAt:{1000:{columns:2},412:{columns:2,margin:{x:5,y:5}}}
         });
         
       },1000)
