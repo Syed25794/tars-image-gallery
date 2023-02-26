@@ -2,19 +2,9 @@ import { Input,InputGroup,InputLeftElement,Link,Box ,IconButton, Menu, MenuButto
 import { IoSearchOutline } from "react-icons/io5";
 import { BsFillSunFill } from "react-icons/bs";
 import { RxHamburgerMenu } from 'react-icons/rx';
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 
-const Navbar = ({searchQuery,handleSearchQuery,options,handleKeyDown}) => {
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-
-    useEffect(() => {
-        function handleResize() {
-            setWindowWidth(window.innerWidth);
-        }
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-  }, [windowWidth]);
+const Navbar = ({searchQuery,handleSearchQuery,options,handleKeyDown,windowWidth}) => {
 
 
   return (

@@ -16,7 +16,7 @@ const ImageCard = ({user,urls,description }) => {
                   <Text m="0px 0px 0px 10px" fontSize={["0.3rem","0.8rem","0.9rem"]} fontStyle="italic" fontFamily="Poppins">{user.username}</Text>
                 </Box>
             </Box>
-            <Box display="flex" marginRight={["0.5rem","1rem","1rem"]} marginTop={["1rem","1.5rem","2rem"]}>
+            <Box display="flex" marginRight={["0.5rem","1rem","1rem"]} marginTop={["1.2rem","1.5rem","2rem"]}>
               <Box w={["1rem","1.5rem","2rem"]} fontSize={["15px","2xl","3xl"]}><BiLike /></Box>
               <Text fontWeight="bold" marginTop={["0rem","0rem","0.2rem"]} fontSize={["10px","md","lg"]}>{user.total_likes}</Text>
             </Box>

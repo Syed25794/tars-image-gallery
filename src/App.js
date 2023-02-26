@@ -12,6 +12,16 @@ function App() {
   const [hideHeroSection,setHideHeroSection]=useState(false);
   const [data,setData]=useState([]);
   const gridLayoutRef=useRef(null);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowWidth(window.innerWidth);
+    }
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [windowWidth]);
 
   function debounce(func, delay) {
     let timeoutId;
@@ -26,7 +36,9 @@ function App() {
   }
   
   const getSearchPhotos = async (searchQuery) => {
-    setHideHeroSection(true);
+    if( windowWidth > 480 ){
+      setHideHeroSection(true);
+    }
     if( searchQuery.length > 0 ){
       try {
         let response = await fetch(
@@ -50,9 +62,8 @@ function App() {
             container:gridLayoutRef.current,
             columns:3,
             margin:{x:30,y:30},
-            breakAt:{300:{columns:2}}
+            breakAt:{1000:{columns:2},412:{columns:2,margin:{x:5,y:5}}}
           });
-          
         },1000)
       } catch (error) {
         console.log(error);
@@ -107,8 +118,8 @@ function App() {
 
   return (
     <Box>
-      <Navbar searchQuery={searchQuery} handleKeyDown={handleKeyDown} handleSearchQuery={handleSearchQuery} options={options} />
-      { !hideHeroSection && <HeroComponent />}
+      <Navbar windowWidth={windowWidth} searchQuery={searchQuery} handleKeyDown={handleKeyDown} handleSearchQuery={handleSearchQuery} options={options} />
+      { !hideHeroSection && <HeroComponent searchQuery={searchQuery} handleKeyDown={handleKeyDown} handleSearchQuery={handleSearchQuery} options={options} />}
       <HomePage imageFlag={hideHeroSection} handleSearchQuery={handleSearchQuery} data={data} gridLayoutRef={gridLayoutRef} />
     </Box>
   );
