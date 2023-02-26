@@ -9,7 +9,7 @@ const HeroComponent = () => {
       <Text fontSize="1rem" color="white" >Over 2.4 million+ stock Images by our talented community</Text>
       <InputGroup fontFamily="Monstserrat" w="75%"  h="3rem">
           <InputLeftElement  h="full" pointerEvents="none" children={<IoSearchOutline  color="gray.300" />}/>
-          <Input h="full" bgColor="white" type="tel" fontSize="lg" placeholder="Search high resolution Images, categories, wallpapers" />
+          <Input border="1px solid black" borderRadius="0.5rem" h="full" bgColor="white" type="tel" fontSize="lg" placeholder="Search high resolution Images, categories, wallpapers" />
         </InputGroup>
     </Box>
   )
