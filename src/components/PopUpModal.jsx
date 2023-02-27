@@ -2,13 +2,8 @@ import { Box, Button, ModalBody ,ModalCloseButton,Text, Modal, ModalOverlay, Mod
 import { BiLike } from 'react-icons/bi'
 import { BsInfoCircle, BsShare } from 'react-icons/bs'
 import { TfiInstagram, TfiTwitter } from 'react-icons/tfi'
-import { saveAs } from 'file-saver'
 
 const PopUpModal = ({isOpen,onClose,imageData,tags}) => {
-    const downloadImage = (url) => {
-        console.log(url,"jfkdjflkdsjflksdj");
-        saveAs(`${url}`, 'image.jpg')
-    }
   return (
     <Box zIndex="10">
         <Modal isOpen={isOpen} onClose={onClose} size={["sm","2xl","4xl"]} isCentered closeOnOverlayClick={false} >
@@ -21,7 +16,7 @@ const PopUpModal = ({isOpen,onClose,imageData,tags}) => {
                             <Button _hover={{color:"black"}}  variant="outline" opacity={0.8}><Icon as={BsShare} marginRight="8px" marginTop="3px" />Share</Button>
                             <Button _hover={{color:"black"}} marginLeft="5px" variant="outline" opacity={0.8}><Icon as={BsInfoCircle} marginRight="8px" marginTop="3px" />Info</Button>
                         </Box>
-                        <Box m={["0rem 0.2rem 0.1rem 0rem","0rem 0.3rem 0.2rem 0rem","0rem 0.5rem 0.2rem 0rem"]}><Button onClick={()=>{downloadImage(imageData.cover_photo.links.download)}} variant="solid" colorScheme="blue">Download Image</Button></Box>
+                        <Box m={["0rem 0.2rem 0.1rem 0rem","0rem 0.3rem 0.2rem 0rem","0rem 0.5rem 0.2rem 0rem"]}><Button variant="solid" colorScheme="blue">Download Image</Button></Box>
                     </Box> 
                 </ModalBody>
                 <Box display="flex" flexDirection="column" m="0rem 0.5rem 0.5rem 0.5rem">

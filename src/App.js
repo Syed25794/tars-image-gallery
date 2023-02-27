@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import Macy from 'macy';
-import './App.css';
+import LoadingImageComponent from './components/LoadingImageComponent';
 
 const randomWord=["Nature images","Trees","Ocean Images","Parrot","Penguine","Elephant","Whale in Sea","Office Room","Galaxy Images"];
 
@@ -16,6 +16,7 @@ function App() {
   const gridLayoutRef=useRef(null);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [page,setPage]=useState(1);
+  const [isLoading,setIsLoading]=useState(false);
 
 
   useEffect(() => {
@@ -43,9 +44,10 @@ function App() {
       setHideHeroSection(true);
     }
     if( searchQuery.length > 0 ){
+      setIsLoading(true);
       try {
         let response = await fetch(
-          `https://api.unsplash.com/search/collections?query=${searchQuery}`,
+          `https://api.unsplash.com/search/collections?query=${searchQuery}&per_page=30`,
           {
             method: "GET",
             headers: {
@@ -67,6 +69,7 @@ function App() {
             breakAt:{1000:{columns:2},412:{columns:2,margin:{x:5,y:5}}}
           });
         },1000)
+        setIsLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -95,6 +98,7 @@ function App() {
   const getRandomImages = useCallback(async()=>{
     const index= Math.floor( Math.random() * 10 );
     try {
+      setIsLoading(true);
       const response = await fetch(`https://api.unsplash.com/search/collections?query=${randomWord[index]}&per_page=20&page=${page}`,{
         method:"GET",
         headers:{"Content-Type":"application/json","Authorization": "Client-ID mzY60xVRdj1ME16LWz1A-zexVmhh0UWBlDXq3edmVMY"},
@@ -108,8 +112,8 @@ function App() {
           margin:{x:30,y:30},
           breakAt:{1000:{columns:2},412:{columns:2,margin:{x:5,y:5}}}
         });
-        
       },10)
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -127,7 +131,7 @@ function App() {
         <Button variant="solid" colorScheme="blue" onClick={()=>setPage(prev=>prev+1)} isDisabled={ page === data.total_pages}>Next</Button>
         <Button variant="solid" colorScheme="blue" onClick={()=>setPage(prev=>prev-1)} isDisabled={ page === 1 }>Previous</Button>
       </Box>
-      <HomePage windowWidth={windowWidth} imageFlag={hideHeroSection} handleSearchQuery={handleSearchQuery} data={data} gridLayoutRef={gridLayoutRef} />
+      { isLoading ? <LoadingImageComponent /> : <HomePage windowWidth={windowWidth} imageFlag={hideHeroSection} handleSearchQuery={handleSearchQuery} data={data} gridLayoutRef={gridLayoutRef} />}
     </Box>
   );
 }
