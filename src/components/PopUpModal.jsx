@@ -6,7 +6,7 @@ import { TfiInstagram, TfiTwitter } from 'react-icons/tfi'
 const PopUpModal = ({isOpen,onClose,imageData,tags}) => {
   return (
     <Box zIndex="10">
-        <Modal isOpen={isOpen} onClose={onClose} size="4xl" isCentered closeOnOverlayClick={false} >
+        <Modal isOpen={isOpen} onClose={onClose} size={["sm","2xl","4xl"]} isCentered closeOnOverlayClick={false} >
             <ModalOverlay />
             <ModalContent>
                 <ModalCloseButton bgColor="white" />
@@ -27,23 +27,22 @@ const PopUpModal = ({isOpen,onClose,imageData,tags}) => {
                                 <Text m={["10px 0px 0px 5px","15px 0px 0px 10px"]} fontSize={["0.4rem","0.9rem","1rem"]} fontWeight="700" fontFamily="Montserrat">{imageData.user.first_name}</Text>
                                 <Text color="gray" m="0px 0px 0px 10px" fontSize={["0.3rem","0.8rem","0.9rem"]} fontStyle="italic" fontFamily="Poppins">{imageData.user.username}</Text>
                             </Box>
-                            <Box m={["10px 0px 0px 5px","25px 0px 0px 15px"]} display="flex">
-                                <Icon as={TfiInstagram} marginTop="5px" /><Text marginLeft="3px" color="gray">/{imageData.user.instagram_username}</Text>
-                                <Icon as={TfiTwitter} marginTop="5px" marginLeft="15px" /><Text color="gray">/{imageData.user.twitter_username}</Text>
+                            <Box m={["10px 0px 0px 10px","25px 0px 0px 15px"]} display="flex">
+                                <Icon as={TfiInstagram} fontSize={["8px","sm","md"]} marginTop={["2px","3px","5px"]} /><Text fontSize={["8px","sm","md"]} marginLeft="3px" color="gray">/{imageData.user.instagram_username === null ? "sample_name" : imageData.user.instagram_username}</Text>
+                                <Icon as={TfiTwitter} fontSize={["8px","sm","md"]} marginTop={["2px","3px","5px"]} marginLeft="15px" /><Text fontSize={["8px","sm","md"]} color="gray">/{imageData.user.twitter_username === null ? "sample_name" : imageData.user.twitter_username}</Text>
                             </Box>
                         </Box>
                         <Box fontWeight="bold" display="flex" marginRight={["0.5rem","1rem","1rem"]} marginTop={["0.8rem","1rem","1.3rem"]}>
-                            <Text marginRight="0.5rem">{`${imageData.downloads} Downloads`}</Text>
-                            <Box w={["0.5rem","1rem","1.4rem"]} marginTop="0.2rem" fontSize={["15px","2xl","xl"]}><BiLike /></Box>
+                            <Box w={["1rem","1.4rem","1.8rem"]} marginTop={["0rem","0rem","0.2rem"]} fontSize={["15px","2xl","2xl"]}><BiLike /></Box>
                             <Text marginTop={["0rem","0rem","0.1rem"]} fontSize={["10px","md","md"]}>{imageData.user.total_likes}</Text>
                         </Box> 
                     </Box>
                     <Box m="0.5rem" marginTop="5px" marginBottom="5px" fontFamily="Poppins">
-                        <Heading size="sm" fontWeight={600}>Related Tags</Heading>
+                        <Heading fontSize={["14px","16px","sm"]} fontWeight={600}>Related Tags</Heading>
                     </Box>
                     <Box m="0.5rem" display="flex" flexWrap="wrap" gap="0.5rem">
                         {tags.map((tag,index)=>{
-                           return <Box p="5px 10px" w="fit-content" fontSize="14px" bgColor="#ececec" key={index}>{tag}</Box>
+                           return <Box p="5px 10px" w="fit-content" fontSize={["12px","14px","14px"]} bgColor="#ececec" key={index}>{tag}</Box>
                         })}
                     </Box>
                 </Box>

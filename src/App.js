@@ -100,7 +100,6 @@ function App() {
         headers:{"Content-Type":"application/json","Authorization": "Client-ID mzY60xVRdj1ME16LWz1A-zexVmhh0UWBlDXq3edmVMY"},
       });
       const result = await response.json();
-      console.log(result);
       setData(result.results);
       setTimeout(()=>{
         Macy({
@@ -110,7 +109,7 @@ function App() {
           breakAt:{1000:{columns:2},412:{columns:2,margin:{x:5,y:5}}}
         });
         
-      },1000)
+      },10)
     } catch (error) {
       console.log(error);
     }
