@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import Macy from 'macy';
+import './App.css';
 
 function App() {
 
@@ -117,7 +118,7 @@ function App() {
   },[getRandomImages])
 
   return (
-    <Box>
+    <Box className="app">
       <Navbar windowWidth={windowWidth} searchQuery={searchQuery} handleKeyDown={handleKeyDown} handleSearchQuery={handleSearchQuery} options={options} />
       { !hideHeroSection && <HeroComponent windowWidth={windowWidth} searchQuery={searchQuery} handleKeyDown={handleKeyDown} handleSearchQuery={handleSearchQuery} options={options} />}
       <HomePage imageFlag={hideHeroSection} handleSearchQuery={handleSearchQuery} data={data} gridLayoutRef={gridLayoutRef} />

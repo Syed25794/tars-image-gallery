@@ -6,7 +6,7 @@ const HomePage = ({data,gridLayoutRef,imageFlag}) => {
     <Box>
       <Box  ref={gridLayoutRef} marginTop={imageFlag ? "8rem" : "2rem"}>
         {data.length > 0 && data.map((image)=>{
-          return <ImageCard user={image.user} description={image.alt_description} urls={image.urls}  key={image.id} />
+          return <ImageCard imageData={image}  key={image.id} />
         })}
       </Box>
     </Box>

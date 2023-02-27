@@ -8,8 +8,8 @@ const Navbar = ({searchQuery,handleSearchQuery,options,handleKeyDown,windowWidth
 
 
   return (
-    <Box top="0" left="0px"  width="full" bgColor="#ffc0c9" display="flex" gap="4rem" h={["4rem","5rem","6rem"]} alignItems="center" position="fixed" justifyContent="space-between" zIndex="5">
-      <Box  fontFamily="pattaya" fontWeight={["200","300","400"]} fontSize={["15px","20px","30px"]} w={["6rem","8rem","11rem"]}>
+    <Box top="0" left="0px"  width="full" bgColor="#ffc0c9" display="flex" gap="4rem" h={["4rem","5rem","6rem"]} alignItems="center" position="fixed" justifyContent="space-between" zIndex="5" marginBottom={["0.5rem","0.7rem","1rem"]}>
+      <Box marginLeft={["0.4rem","0.5rem","0.6rem"]} fontFamily="pattaya" fontWeight={["200","300","400"]} fontSize={["15px","20px","30px"]} w={["6rem","8rem","11rem"]}>
         <Link textDecor="none">Image Gallery</Link>
       </Box>
       <Box   w={["10rem","20rem","25rem"]} display={["none","block","block"]}>
