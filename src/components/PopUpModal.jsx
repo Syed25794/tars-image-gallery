@@ -11,7 +11,7 @@ const PopUpModal = ({isOpen,onClose,imageData,tags}) => {
             <ModalContent>
                 <ModalCloseButton bgColor="white" />
                 <ModalBody>
-                    <Box display="flex" alignItems="flex-end" justifyContent="space-between" bgImage={`url(${imageData.urls.regular})`} m="-0.5rem -1.5rem 0rem -1.5rem" h="25rem" bgSize="cover" bgPosition="center" bgRepeat="no-repeat" borderRadius="0.3rem 0.3rem 0rem 0rem">
+                    <Box display="flex" alignItems="flex-end" justifyContent="space-between" bgImage={`url(${imageData.cover_photo.urls.regular})`} m="-0.5rem -1.5rem 0rem -1.5rem" h="25rem" bgSize="cover" bgPosition="center" bgRepeat="no-repeat" borderRadius="0.3rem 0.3rem 0rem 0rem">
                         <Box m="0rem 0rem 0.5rem 0.5rem" color="white">
                             <Button _hover={{color:"black"}}  variant="outline" opacity={0.8}><Icon as={BsShare} marginRight="8px" marginTop="3px" />Share</Button>
                             <Button _hover={{color:"black"}} marginLeft="5px" variant="outline" opacity={0.8}><Icon as={BsInfoCircle} marginRight="8px" marginTop="3px" />Info</Button>

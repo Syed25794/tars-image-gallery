@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react';
+import { Box, Button } from '@chakra-ui/react';
 import HeroComponent from './components/HeroComponent';
 import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
@@ -6,14 +6,16 @@ import React, { useCallback, useEffect, useRef, useState } from 'react'
 import Macy from 'macy';
 import './App.css';
 
-function App() {
+const randomWord=["Nature images","Trees","Ocean Images","Parrot","Penguine","Elephant","Whale in Sea","Office Room","Galaxy Images"];
 
+function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [options, setOptions] = useState([]);
   const [hideHeroSection,setHideHeroSection]=useState(false);
   const [data,setData]=useState([]);
   const gridLayoutRef=useRef(null);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [page,setPage]=useState(1);
 
 
   useEffect(() => {
@@ -56,7 +58,6 @@ function App() {
         let data = result.results;
         const autoCompleteData = data.map((image) => image.title);
         setOptions(autoCompleteData);
-        data = data.map((image)=>{ return {...image, urls:image.cover_photo.urls}})
         setData(data);
         setTimeout(()=>{
           Macy({
@@ -92,13 +93,15 @@ function App() {
 
 
   const getRandomImages = useCallback(async()=>{
+    const index= Math.floor( Math.random() * 10 );
     try {
-      const response = await fetch("https://api.unsplash.com/photos/random?count=40",{
+      const response = await fetch(`https://api.unsplash.com/search/collections?query=${randomWord[index]}&per_page=20&page=${page}`,{
         method:"GET",
         headers:{"Content-Type":"application/json","Authorization": "Client-ID mzY60xVRdj1ME16LWz1A-zexVmhh0UWBlDXq3edmVMY"},
       });
       const result = await response.json();
-      setData(result);
+      console.log(result);
+      setData(result.results);
       setTimeout(()=>{
         Macy({
           container:gridLayoutRef.current,
@@ -111,17 +114,21 @@ function App() {
     } catch (error) {
       console.log(error);
     }
-  },[]);
+  },[page]);
 
   useEffect(()=>{
     getRandomImages();
   },[getRandomImages])
 
   return (
-    <Box className="app">
+    <Box>
       <Navbar windowWidth={windowWidth} searchQuery={searchQuery} handleKeyDown={handleKeyDown} handleSearchQuery={handleSearchQuery} options={options} />
       { !hideHeroSection && <HeroComponent windowWidth={windowWidth} searchQuery={searchQuery} handleKeyDown={handleKeyDown} handleSearchQuery={handleSearchQuery} options={options} />}
-      <HomePage imageFlag={hideHeroSection} handleSearchQuery={handleSearchQuery} data={data} gridLayoutRef={gridLayoutRef} />
+      <Box marginTop={ hideHeroSection ? "120px" : "10px"} display="flex" gap="20px" alignItems="center" justifyContent="center">
+        <Button variant="solid" colorScheme="blue" onClick={()=>setPage(prev=>prev+1)} isDisabled={ page === data.total_pages}>Next</Button>
+        <Button variant="solid" colorScheme="blue" onClick={()=>setPage(prev=>prev-1)} isDisabled={ page === 1 }>Previous</Button>
+      </Box>
+      <HomePage windowWidth={windowWidth} imageFlag={hideHeroSection} handleSearchQuery={handleSearchQuery} data={data} gridLayoutRef={gridLayoutRef} />
     </Box>
   );
 }

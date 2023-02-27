@@ -3,32 +3,19 @@ import React, { useEffect, useState } from 'react'
 import { BiLike } from 'react-icons/bi';
 import PopUpModal from './PopUpModal';
 
-const ImageCard = ({imageData }) => {
+const ImageCard = ({imageData}) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [tags,setTags]=useState([]);
-  console.log(imageData,tags);
   useEffect(()=>{
-    const getPhotoTags=async()=>{
-      try {
-        const response = await fetch(`https://api.unsplash.com/photos/${imageData.id}`,{
-          method:"GET",
-          headers:{"Content-Type":"application/json","Authorization":"Client-ID mzY60xVRdj1ME16LWz1A-zexVmhh0UWBlDXq3edmVMY"}
-        });
-      let result = await response.json();
-      result = result.tags.map((tag)=> tag.title );
-      setTags(result);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    getPhotoTags();
+    const imageTags = imageData.tags.map((tag)=> tag.title );
+    setTags(imageTags);
   },[imageData])
-  console.log(imageData)
+  
   return (
     <Box boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px;" transition="transform 0.5s" borderRadius="1rem 1rem 0rem 0rem" _hover={{cursor:"pointer",transform:"scale(1.05)",position:"relative","z-index":"3"}} bgColor="white" onClick={onOpen}>
       {isOpen ? <PopUpModal isOpen={isOpen} onClose={onClose} imageData={imageData} tags={tags}  /> : null}
         <Box>
-            <Image borderRadius="1rem 1rem 0rem 0rem"  src={imageData.urls.regular} alt={imageData.description} />
+            <Image borderRadius="1rem 1rem 0rem 0rem"  src={imageData.cover_photo.urls.regular} alt={imageData.description} />
         </Box>
         <Box h={["3.5rem","5rem","6rem"]} display="flex" justifyContent="space-between">
             <Box margin={["0rem 0.1rem 0rem 0.1rem","0.2rem","0rem 0.5rem 0rem 0.5rem"]} display="flex">
