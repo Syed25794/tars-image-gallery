@@ -124,6 +124,7 @@ function App() {
   },[getRandomImages])
 
   return (
+    
     <Box>
       <Navbar windowWidth={windowWidth} searchQuery={searchQuery} handleKeyDown={handleKeyDown} handleSearchQuery={handleSearchQuery} options={options} />
       { !hideHeroSection && <HeroComponent windowWidth={windowWidth} searchQuery={searchQuery} handleKeyDown={handleKeyDown} handleSearchQuery={handleSearchQuery} options={options} />}

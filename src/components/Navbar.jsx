@@ -2,10 +2,8 @@ import { Input,InputGroup,InputLeftElement,Link,Box ,IconButton, Menu, MenuButto
 import { IoSearchOutline } from "react-icons/io5";
 import { BsFillSunFill } from "react-icons/bs";
 import { RxHamburgerMenu } from 'react-icons/rx';
-// import { useEffect, useState } from "react";
 
 const Navbar = ({searchQuery,handleSearchQuery,options,handleKeyDown,windowWidth}) => {
-
 
   return (
     <Box top="0" left="0px"  width="full" bgColor="#ffc0c9" display="flex" gap="4rem" h={["4rem","5rem","6rem"]} alignItems="center" position="fixed" justifyContent="space-between" zIndex="5" marginBottom={["0.5rem","0.7rem","1rem"]}>

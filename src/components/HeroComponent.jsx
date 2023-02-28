@@ -5,7 +5,6 @@ import { IoSearchOutline } from 'react-icons/io5'
 const HeroComponent = ({handleKeyDown,searchQuery,handleSearchQuery,options,windowWidth}) => {
 
   const searchImages=(e)=>{
-    console.log(windowWidth);
     if( windowWidth < 480 ){
       handleSearchQuery(e);
     }

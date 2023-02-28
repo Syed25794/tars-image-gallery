@@ -4,6 +4,8 @@ import { BsInfoCircle, BsShare } from 'react-icons/bs'
 import { TfiInstagram, TfiTwitter } from 'react-icons/tfi'
 
 const PopUpModal = ({isOpen,onClose,imageData,tags}) => {
+
+    
   return (
     <Box zIndex="10">
         <Modal isOpen={isOpen} onClose={onClose} size={["sm","2xl","4xl"]} isCentered closeOnOverlayClick={false} >
